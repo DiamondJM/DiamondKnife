@@ -32,8 +32,8 @@ end
 for ii = [1 2 11 12]
     startPosition(ii,:) = 99;
 end
-for j = [1 2 11 12]
-    startPosition(:,j) = 99;
+for ii = [1 2 11 12]
+    startPosition(:,ii) = 99;
 end
 
 
@@ -53,9 +53,7 @@ currentGame = gameOrganizer;
 
 while ~currentObject.gameOver
     
-    clf
     RenderBoard(currentObject.position)
-    drawnow
     
     if (currentObject.wmove && ~currentGame.whiteHuman)...
             || (~currentObject.wmove && ~currentGame.blackHuman)
@@ -68,6 +66,7 @@ while ~currentObject.gameOver
     
 end
 
+RenderBoard(currentObject.position)
 disp('Game over! ');
 
 
@@ -135,4 +134,7 @@ else
         currentObject = currentObject.children(index);
     end
 end
+currentObject = humanMateCheck(currentObject,2);
+
+
 end
