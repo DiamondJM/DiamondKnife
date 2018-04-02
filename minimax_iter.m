@@ -38,7 +38,7 @@ if chessobj.wmove
         %if compareeval>= beta&&i<length(chessobj.children)
         
         if beta<= alpha ...
-                && ~any([chessobj.children.winningeval].* (~chessobj.wmove * 1 + chessobj.wmove * -1) ==  840)
+                && ~any([chessobj.children.childLostKing])
             flag = 1;
             break
         end
