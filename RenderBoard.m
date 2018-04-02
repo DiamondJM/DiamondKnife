@@ -41,4 +41,6 @@ for i=3:10
     end
 end
 
+drawnow
+
 end
