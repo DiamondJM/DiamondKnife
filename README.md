@@ -9,4 +9,4 @@ Features include support for human vs. computer, human vs. human, and computer v
 
 Chess engine features alpha beta pruning; a transposition table using MATLAB's containers.Map feature; iterative deepening; and late move reduction. 
 
-Give it a try, and let me know how it performs! Bug discoveries are welcome. 
+Give it a try, and let me know how it performs! To use, just run chessMain.m. Bug discoveries are welcome. 
