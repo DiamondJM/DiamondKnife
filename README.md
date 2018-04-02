@@ -3,7 +3,7 @@ A chess engine for MATLAB.
 
 This is a fully-functional chess engine. 
 
-Strength isn't great, as I think I was starting to hit the ceiling on computational power. Was able to reach around 1100 on online servers. 
+Strength isn't great, as I think I was starting to hit the ceiling on computational power. Was able to reach around 1100 elo on online servers. 
 
 Features include support for human vs. computer, human vs. human, and computer vs. computer. Features GUI with chessboard figure. Stalemate and 3-move repeat detection are active. 
 
