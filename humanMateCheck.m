@@ -1,30 +1,31 @@
-function chessobj = humanMateCheck(chessobj,depth)
-
-
-
-if depth>=1
-    if isempty(chessobj.children)
-        chessobj=listofmoves(chessobj);
+function currentObj = humanMateCheck(currentObj,depth,zKeys)
+    
+    
+    if depth == 0; return; end
+    
+    currentObj = generateMovesWrapper(currentObj,zKeys);
+    for ii = 1:length(currentObj.children)
+        currentObj.children(ii) = humanMateCheck(currentObj.children(ii),depth - 1,zKeys);
     end
-    for ii=1:length(chessobj.children)
-        chessobj.children(ii) = humanMateCheck(chessobj.children(ii),depth-1);
+    
+    if depth == 1; return; end
+
+    breakFlag = false; 
+    for ii = 1:length(currentObj.children)
+        if ~any([currentObj.children(ii).children.lostKing])
+            breakFlag = true;
+            break
+        end
     end
-end
-
-if depth ~=2;return;end
-
-for ii = 1:length(chessobj.children)
-    if ~any([chessobj.children(ii).children.lostking])
-        break
+    
+    if ~breakFlag
+        currentObj.gameOver = true;
     end
+    
+    % Essentially what we're doing is populating two generations of moves.
+    % If our parent node is such that EVERY child has at least one of its
+    % children's kings gone, we have a mate (checkmate or stale mate). 
+    
+    
+    
 end
-
-
-if ii==length(chessobj.children)
-    chessobj.gameOver = true;
-end
-
-
-
-
-end 
