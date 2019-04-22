@@ -3,10 +3,19 @@ A chess engine for MATLAB.
 
 This is a fully-functional chess engine. 
 
-Strength isn't great, as I think I was starting to hit the ceiling on computational power. Was able to reach around 1100 elo on online servers. 
+DiamondKnife enjoys a 1700 rapid (15|10) rating on the Free Internet Chess Server. 
 
-Features include support for human vs. computer, human vs. human, and computer vs. computer. Features GUI with chessboard figure. Stalemate and 3-move repeat detection are active. 
+Algorithm:
+- DiamondKnife uses a tree search design. It employs the Principal Variation Search algorithm, in which non-PV nodes are called with null windows. 
+- The heuristic position evaluator computes material, with added bonuses for: bishop pair; rook on open file; castling; advanced pawns; control of the center; simplification given an advantage in the endgame; and others. 
+- DiamondKnife uses an iterative deepening approach, in which the main routine is called with successive increases in depth. 
+- Efficiency is improved with a transposition table, as well as with a table of killer moves. Killer moves are placed after the last capture, or in order 5, whichever comes first. 
+- DiamondKnife also uses a late move reduction scheme, in which moves of order >= 8, in depth >= 3, which are non-captures, and when there is no check, may be called with depth - 2 instead of depth - 1. 
 
-Chess engine features alpha beta pruning; a transposition table using MATLAB's containers.Map feature; iterative deepening; and late move reduction. 
+Implementation: 
+- DiamondKnife uses MATLAB's Containers.Map feature for its transposition table. 
+- The position evaluator and move generator were ported to C using MATLAB's Coder feature. This permitted great increases in efficiency.
+- Each node retains a history of all previously-visited nodes, both in-game and in the game tree, permitting easy draw detection. 
+- This utility features a GUI and options for human-human, human-computer, and computer-computer play. 
 
-Give it a try, and let me know how it performs! To use, just run chessMain.m. Bug discoveries are welcome. 
+To use, just run chessMain.m. Let me know how it performs, and happy chess playing! 
