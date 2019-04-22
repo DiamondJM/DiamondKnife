@@ -13,7 +13,6 @@ Algorithm:
 - DiamondKnife also uses a late move reduction scheme, in which moves of order >= 8, in depth >= 3, which are non-captures, and when there is no check, may be called with depth - 2 instead of depth - 1. 
 
 Implementation: 
-- DiamondKnife uses MATLAB's Containers.Map feature for its transposition table. 
 - The position evaluator and move generator were ported to C using MATLAB's Coder feature. This permitted great increases in efficiency.
 - Each node retains a history of all previously-visited nodes, both in-game and in the game tree, permitting easy draw detection. 
 - This utility features a GUI and options for human-human, human-computer, and computer-computer play. 
