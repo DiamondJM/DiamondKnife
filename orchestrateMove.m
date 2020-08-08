@@ -31,7 +31,11 @@ function [currentObj,TTable] = computerMove(currentObj,TTable,zKeys)
     
     
     currentObj = currentObj.children(index);
-    currentObj = humanMateCheck(currentObj,2,zKeys);
+    % currentObj = humanMateCheck(currentObj,2,zKeys);
+    
+    myStruct = TTable(currentObj.zobristKey);
+    if myStruct.gameOver; currentObj.gameOver = true; end
+
 end
 
 
