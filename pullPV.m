@@ -1,4 +1,4 @@
-function [pv, depthReached] = pullPV(currentObj,TTable,zKeys)
+function pv = pullPV(currentObj,TTable,zKeys)
         
     pv = '';
     boardTitle = '';
@@ -6,9 +6,7 @@ function [pv, depthReached] = pullPV(currentObj,TTable,zKeys)
     
     subplot(1,2,2);
     RenderBoard(currentObj.position,boardTitle);
-    
-    depthReached = 0;
-
+   
     
     while true
         
@@ -37,7 +35,7 @@ function [pv, depthReached] = pullPV(currentObj,TTable,zKeys)
                 pv = strjoin({pv, moveString},', ');
             end
             
-            currentObj.children = generateMoves(currentObj,zKeys);
+            currentObj = generateMovesWrapper(currentObj,zKeys);
             moveList = cat(1,currentObj.children.moveIdentifier);
             index = all(moveList == bestMove,2);
             

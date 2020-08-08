@@ -26,6 +26,6 @@ function currentObj = humanMateCheck(currentObj,depth,zKeys)
     % If our parent node is such that EVERY child has at least one of its
     % children's kings gone, we have a mate (checkmate or stale mate). 
     
-    
+    if depth == 2; currentObj.children = []; end
     
 end

@@ -65,7 +65,7 @@ function [currentObj,TTable,killerMoves] = manageTranstable(currentObj,alpha,bet
         
         if any([currentObj.children.lostKing] == 2)
             return 
-            % This is this tricky case were we're actually not sure
+            % This is this tricky case where we're actually not sure
             % positions with a lost king, due to castle through check, are
             % actually losing. 
             % This can actually just look illegal because a transposition

@@ -20,8 +20,8 @@ function [currentObj,TTable] = computerMove(currentObj,TTable,zKeys)
     searchDepth = 15;
     
     [currentObj,TTable] = iterativeDeep(currentObj,searchDepth,TTable,zKeys);
-    if currentObj.gameOver; return; end
-    
+    if currentObj.gameOver; return; end  % Probably will never get here.
+   
     currentObj = generateMovesWrapper(currentObj,zKeys);
 
     bestMove = TTable(currentObj.zobristKey).bestMove;
@@ -31,6 +31,7 @@ function [currentObj,TTable] = computerMove(currentObj,TTable,zKeys)
     
     
     currentObj = currentObj.children(index);
+    currentObj = humanMateCheck(currentObj,2,zKeys);
 end
 
 
@@ -59,6 +60,10 @@ function currentObj = humanMove(currentObj,zKeys)
             'For promotions, format as b2a1=N. \n' ...
             'For castling, give o-o or o-o-o. \n'])
         
+        currentObj.children = [];
+        currentObj = humanMove(currentObj,zKeys);
+        return
+        
     else
         if isequal(moveChoice,'o-o') % The opponent castled. Are they white or black?
             if currentObj.currentColor == 1
@@ -86,6 +91,5 @@ function currentObj = humanMove(currentObj,zKeys)
         end
     end
     currentObj = humanMateCheck(currentObj,2,zKeys);
-    currentObj.children = [];
     
 end
